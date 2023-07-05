@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
 const {UserModel} = require("../model/UserModel");
-const {authenticate} = require("../middleware/authenticate")
+// const {authenticate} = require("../middleware/authenticate")
 
 
               //<----------------to register user--------------->

@@ -16,9 +16,19 @@ app.use(cors());
 
                             //<-----------routes-------------------->//
 const userRoute = require("./routes/userRoute");
+const {theaterRouter} = require("./routes/theaterRoute")
+const {movieRouter} = require("./routes/movieRoute")
+const {ticketRouter} = require("./routes/ticketRoute")
+const {cartRouter} = require("./routes/cartRoute")
+
+
+                         //-<----------middleware----------------------->
+const { authenticate } = require("./middleware/authenticate")                         
 app.use("/users", userRoute);
-
-
+app.use("/theater",theaterRouter)
+app.use("/movie",authenticate,movieRouter)
+app.use("/ticket",authenticate,ticketRouter)
+app.use("cart",authenticate,cartRouter)
                         //-<--------server------------------------->
 app.listen(process.env.port, async () => {
     try {

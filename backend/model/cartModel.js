@@ -1,15 +1,33 @@
-const mongoose = require('mongoose');
+const mongoose=require("mongoose")
 
 // <<-------------------------cartSchema--------------->>
-const cartSchema = mongoose.Schema({
-    name:{type:String,required:true},
-},{
-    versionKey:false
-});
+const cartSchema=mongoose.Schema(
+    {
+        userId: { type: "ObjectId", ref: "users" },
+        cartDetails: [
+          {
+            MovieName: { type: String, required: true },
+            Price: { type: Number, required: true },
+            location: { type: String },
+            showTime: { type: String, required: true },
+            seat: [
+              {
+                seatNo: { type: Number, required: true },
+                isBooked: { type: Boolean, default: false },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        versionKey: false,
+      }
+)
 
-//<<-------------------------cartModel--------------->>
-const cartModel = mongoose.model("cart",cartSchema);
+// <<-------------------------CartModel--------------->>
+const CartModel=mongoose.model("cart",cartSchema)
 
-module.exports = {
-    cartModel
+
+module.exports={
+    CartModel
 }

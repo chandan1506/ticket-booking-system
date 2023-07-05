@@ -1,15 +1,26 @@
-const mongoose = require('mongoose');
+const mongoose=require("mongoose")
 
 // <<-------------------------theaterSchema--------------->>
-const theaterSchema = mongoose.Schema({
-    name:{type:String,required:true},
+const theaterSchema=mongoose.Schema({
+
+    theaterName:{type:String,requred:true},
+    location:{type:String,required:true},
+    totalSeats:{type:Number,default:0},
+    movie:[{type:"ObjectId",ref:"movies"}]
+
 },{
     versionKey:false
-});
+})
 
-//<<-------------------------theaterModel--------------->>
-const theaterModel = mongoose.model("theater",theaterSchema);
+// <<-------------------------TheaterModel--------------->>
+const TheaterModel=mongoose.model("theater",theaterSchema)
 
-module.exports = {
-    theaterModel
+
+module.exports={
+    TheaterModel
 }
+
+// theaterName:"Mona",
+// location:"Patna",
+// totalSeats:350,
+// movie:[{}]
